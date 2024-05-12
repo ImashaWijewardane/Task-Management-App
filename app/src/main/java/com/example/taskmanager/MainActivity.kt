@@ -60,8 +60,13 @@ class MainActivity : AppCompatActivity(), TodoAdapter.TodoClickListener {
             }
         } else if (requestCode == UPDATE_DELETE_TODO_REQUEST_CODE && resultCode == RESULT_OK) {
             val todo = data?.getSerializableExtra("todo") as? ToDoEntity
-            if (todo != null) {
+            val isDeleted = data?.getSerializableExtra("delete_todo") as? Boolean
+            if (todo != null && isDeleted == null) {
                 viewModel.updateTodo(todo)
+            } else {
+                todo?.let {
+                    viewModel.deleteTodo(it)
+                }
             }
         }
     }
