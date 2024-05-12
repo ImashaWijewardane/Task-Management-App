@@ -58,6 +58,11 @@ class MainActivity : AppCompatActivity(), TodoAdapter.TodoClickListener {
             if (todo != null) {
                 viewModel.insertTodo(todo)
             }
+        } else if (requestCode == UPDATE_DELETE_TODO_REQUEST_CODE && resultCode == RESULT_OK) {
+            val todo = data?.getSerializableExtra("todo") as? ToDoEntity
+            if (todo != null) {
+                viewModel.updateTodo(todo)
+            }
         }
     }
 
@@ -70,5 +75,6 @@ class MainActivity : AppCompatActivity(), TodoAdapter.TodoClickListener {
     companion object {
         private const val ADD_TODO_REQUEST_CODE = 1
         private const val UPDATE_DELETE_TODO_REQUEST_CODE = 2
+        private const val UPDATE_TODO_REQUEST_CODE = 3
     }
 }
