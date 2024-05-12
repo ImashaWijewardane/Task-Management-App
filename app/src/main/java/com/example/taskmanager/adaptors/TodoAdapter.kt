@@ -25,7 +25,7 @@ class TodoAdapter(private val listener: TodoClickListener) :
         holder.title.text = item.title
         holder.title.isSelected = true
         holder.note.text = item.note
-        holder.date.text = item.date
+        holder.date.text = item.deadline
         holder.date.isSelected = true
         holder.todoLayout.setOnClickListener {
             listener.onItemClicked(todoList[holder.adapterPosition])

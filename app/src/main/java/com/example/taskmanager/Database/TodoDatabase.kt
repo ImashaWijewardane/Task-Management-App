@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.taskmanager.models.ToDoEntity
 import com.example.taskmanager.utils.Variables.DATABASE_NAME
 
-@Database(entities = arrayOf(ToDoEntity::class), version = 1)
+@Database(entities = [ToDoEntity::class], version = 2)
 abstract class TodoDatabase : RoomDatabase() {
     abstract fun getTodoDao(): TodoDao
 
@@ -21,12 +21,12 @@ abstract class TodoDatabase : RoomDatabase() {
                     context.applicationContext,
                     TodoDatabase::class.java,
                     DATABASE_NAME
-                ).build()
+                ).fallbackToDestructiveMigration()
+                    .build()
 
                 INSTANCE = instance
                 instance
             }
         }
     }
-
 }

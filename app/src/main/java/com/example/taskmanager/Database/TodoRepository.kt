@@ -18,4 +18,7 @@ class TodoRepository(private val todoDao: TodoDao) {
     suspend fun update(todo: ToDoEntity){
         todoDao.update(todo.id, todo.title, todo.note)
     }
+    fun searchTodos(searchText: String): LiveData<List<ToDoEntity>> {
+        return todoDao.searchTodos("%$searchText%")
+    }
 }
