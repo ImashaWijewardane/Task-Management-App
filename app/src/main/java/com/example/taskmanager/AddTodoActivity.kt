@@ -144,6 +144,7 @@ class AddTodoActivity : AppCompatActivity() {
             hour, minute, false
         )
 
+        
         // Show the Time Picker Dialog
         timePickerDialog.show()
     }
